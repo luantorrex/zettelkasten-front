@@ -10,8 +10,8 @@ The project is at its initial stage. More information will be added as developme
 
 1. Clone this repository.
 2. Install dependencies after setting up your Angular environment.
-3. Run the development server.
-4. Ensure the backend API is running (by default at `http://localhost:8000`).
+3. Run the development server (serves the front-end at `http://localhost:8000`).
+4. Ensure the backend API is running (by default at `http://localhost:3000`).
 
 ```
 # Example steps

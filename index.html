@@ -15,7 +15,7 @@
       <button type="submit">Add Note</button>
     </form>
     <div class="notes">
-      <div class="note" ng-repeat="note in ctrl.notes track by note.id">
+      <div class="note" ng-repeat="note in ctrl.notes track by note._id">
         <h2>{{note.title}}</h2>
         <p>{{note.content}}</p>
         <button ng-click="ctrl.editNote(note)">Edit</button>
