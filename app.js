@@ -24,7 +24,7 @@
     };
 
     self.deleteNote = function(note) {
-      $http.delete(API_BASE + '/' + note.id).then(function() {
+      $http.delete(API_BASE + '/' + note._id).then(function() {
         var index = self.notes.indexOf(note);
         if (index >= 0) {
           self.notes.splice(index, 1);
@@ -38,7 +38,7 @@
     };
 
     self.updateNote = function() {
-      $http.put(API_BASE + '/' + self.editing.id, self.editNoteData).then(function(res) {
+      $http.put(API_BASE + '/' + self.editing._id, self.editNoteData).then(function(res) {
         var index = self.notes.indexOf(self.editing);
         if (index >= 0) {
           self.notes[index] = res.data;
