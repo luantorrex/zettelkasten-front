@@ -3,7 +3,7 @@
 
   app.controller('NotesController', function($http) {
     var self = this;
-    var API_BASE = 'http://localhost:8000/notes';
+    var API_BASE = 'http://localhost:3000/notes';
 
     self.notes = [];
     self.newNote = {};
