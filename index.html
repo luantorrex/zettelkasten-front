@@ -15,14 +15,14 @@
       <button type="submit">Add Note</button>
     </form>
     <div class="notes">
-      <div class="note" ng-repeat="note in ctrl.notes track by $index">
+      <div class="note" ng-repeat="note in ctrl.notes track by note.id">
         <h2>{{note.title}}</h2>
         <p>{{note.content}}</p>
-        <button ng-click="ctrl.editNote($index)">Edit</button>
-        <button ng-click="ctrl.deleteNote($index)">Delete</button>
+        <button ng-click="ctrl.editNote(note)">Edit</button>
+        <button ng-click="ctrl.deleteNote(note)">Delete</button>
       </div>
     </div>
-    <div class="edit-section" ng-if="ctrl.editing >= 0">
+    <div class="edit-section" ng-if="ctrl.editing">
       <h2>Edit Note</h2>
       <form ng-submit="ctrl.updateNote()">
         <input type="text" ng-model="ctrl.editNoteData.title" required>
