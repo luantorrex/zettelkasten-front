@@ -1,6 +1,6 @@
 # Zettelkasten Front
 
-This repository contains the front-end of the Zettelkasten project. It will be built using **Angular**. The REST API and other backend logic live in a separate repository.
+This repository contains the front-end of the Zettelkasten project. It is built using **AngularJS** and communicates with the REST API provided by the backend service.
 
 ## Project Status
 
@@ -10,7 +10,8 @@ The project is at its initial stage. More information will be added as developme
 
 1. Clone this repository.
 2. Install dependencies after setting up your Angular environment.
-3. Run the Angular development server.
+3. Run the development server.
+4. Ensure the backend API is running (by default at `http://localhost:8000`).
 
 ```
 # Example steps
@@ -19,4 +20,15 @@ ng serve
 ```
 
 The backend is expected to run separately. Check the backend repository for details.
+The front-end expects the following note endpoints to be available:
+
+```
+POST   /notes
+GET    /notes
+GET    /notes/{note_id}
+PUT    /notes/{note_id}
+DELETE /notes/{note_id}
+```
+
+Update the `API_BASE` variable in `app.js` if your backend runs on a different URL.
 

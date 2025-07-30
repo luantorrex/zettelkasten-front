@@ -1,46 +1,58 @@
 (function() {
   var app = angular.module('notesApp', []);
 
-  app.controller('NotesController', function($window) {
+  app.controller('NotesController', function($http) {
     var self = this;
-    self.notes = JSON.parse($window.localStorage.getItem('notes')) || [];
+    var API_BASE = 'http://localhost:8000/notes';
+
+    self.notes = [];
     self.newNote = {};
-    self.editing = -1;
+    self.editing = null;
     self.editNoteData = {};
 
-    self.addNote = function() {
-      self.notes.push({
-        title: self.newNote.title,
-        content: self.newNote.content
+    self.loadNotes = function() {
+      $http.get(API_BASE).then(function(res) {
+        self.notes = res.data;
       });
-      self.newNote = {};
-      self.save();
     };
 
-    self.deleteNote = function(index) {
-      self.notes.splice(index, 1);
-      self.save();
+    self.addNote = function() {
+      $http.post(API_BASE, self.newNote).then(function(res) {
+        self.notes.push(res.data);
+        self.newNote = {};
+      });
     };
 
-    self.editNote = function(index) {
-      self.editing = index;
-      self.editNoteData = angular.copy(self.notes[index]);
+    self.deleteNote = function(note) {
+      $http.delete(API_BASE + '/' + note.id).then(function() {
+        var index = self.notes.indexOf(note);
+        if (index >= 0) {
+          self.notes.splice(index, 1);
+        }
+      });
+    };
+
+    self.editNote = function(note) {
+      self.editing = note;
+      self.editNoteData = angular.copy(note);
     };
 
     self.updateNote = function() {
-      self.notes[self.editing] = angular.copy(self.editNoteData);
-      self.editing = -1;
-      self.editNoteData = {};
-      self.save();
+      $http.put(API_BASE + '/' + self.editing.id, self.editNoteData).then(function(res) {
+        var index = self.notes.indexOf(self.editing);
+        if (index >= 0) {
+          self.notes[index] = res.data;
+        }
+        self.editing = null;
+        self.editNoteData = {};
+      });
     };
 
     self.cancelEdit = function() {
-      self.editing = -1;
+      self.editing = null;
       self.editNoteData = {};
     };
 
-    self.save = function() {
-      $window.localStorage.setItem('notes', JSON.stringify(self.notes));
-    };
+    self.loadNotes();
   });
 })();
