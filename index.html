@@ -1,14 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="notesApp">
 <head>
   <meta charset="utf-8">
   <title>Zettelkasten</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body ng-controller="NotesController as ctrl">
   <div class="container">
     <h1>Zettelkasten</h1>
-    <a href="notes/">Go to Notes</a>
+    <div class="notes">
+      <div class="note" ng-repeat="note in ctrl.notes track by note._id">
+        <h2>{{note.title}}</h2>
+        <p>{{note.content}}</p>
+      </div>
+    </div>
   </div>
+  <script src="app.js"></script>
 </body>
 </html>
