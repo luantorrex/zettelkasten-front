@@ -17,11 +17,13 @@
     };
 
     self.addNote = function() {
-      var noteData = angular.copy(self.newNote);
       var userId = auth.getUserId();
-      if (userId) {
-        noteData.user_id = userId;
+      if (!userId) {
+        auth.requireAuth();
+        return;
       }
+      var noteData = angular.copy(self.newNote);
+      noteData.user_id = userId;
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
@@ -29,6 +31,11 @@
     };
 
     self.deleteNote = function(note) {
+      var userId = auth.getUserId();
+      if (!userId) {
+        auth.requireAuth();
+        return;
+      }
       $http.delete(API_BASE + note._id).then(function() {
         var index = self.notes.indexOf(note);
         if (index >= 0) {
@@ -43,12 +50,14 @@
     };
 
     self.updateNote = function() {
+      var userId = auth.getUserId();
+      if (!userId) {
+        auth.requireAuth();
+        return;
+      }
       var url = API_BASE + self.editing._id;
       var noteData = angular.copy(self.editNoteData);
-      var userId = auth.getUserId();
-      if (userId) {
-        noteData.user_id = userId;
-      }
+      noteData.user_id = userId;
       $http.put(url, noteData).then(function(res) {
         var index = self.notes.indexOf(self.editing);
         if (index >= 0) {
