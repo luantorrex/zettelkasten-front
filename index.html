@@ -2,18 +2,34 @@
 <html lang="en" ng-app="notesApp">
 <head>
   <meta charset="utf-8">
-  <title>Zettelkasten</title>
+  <title>Zettelkasten Notes</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body ng-controller="NotesController as ctrl">
   <div class="container">
-    <h1>Zettelkasten</h1>
+    <h1>Zettelkasten Notes</h1>
+    <form ng-submit="ctrl.addNote()">
+      <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>
+      <textarea ng-model="ctrl.newNote.content" placeholder="Content" required></textarea>
+      <button type="submit">Add Note</button>
+    </form>
     <div class="notes">
       <div class="note" ng-repeat="note in ctrl.notes track by note._id">
         <h2>{{note.title}}</h2>
         <p>{{note.content}}</p>
+        <button ng-click="ctrl.editNote(note)">Edit</button>
+        <button ng-click="ctrl.deleteNote(note)">Delete</button>
       </div>
+    </div>
+    <div class="edit-section" ng-if="ctrl.editing">
+      <h2>Edit Note</h2>
+      <form ng-submit="ctrl.updateNote()">
+        <input type="text" ng-model="ctrl.editNoteData.title" required>
+        <textarea ng-model="ctrl.editNoteData.content" required></textarea>
+        <button type="submit">Save</button>
+        <button type="button" ng-click="ctrl.cancelEdit()">Cancel</button>
+      </form>
     </div>
   </div>
   <script src="app.js"></script>
