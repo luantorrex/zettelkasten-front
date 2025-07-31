@@ -4,15 +4,12 @@
   <meta charset="utf-8">
   <title>Zettelkasten Notes</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="../session.js"></script>
-  <script>auth.requireAuth();</script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body ng-controller="NotesController as ctrl">
   <div class="container">
     <h1>Zettelkasten Notes</h1>
-    <button ng-if="auth.isLoggedIn()" onclick="auth.logout()">Logout</button>
-    <form ng-if="auth.isLoggedIn()" ng-submit="ctrl.addNote()">
+    <form ng-submit="ctrl.addNote()">
       <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>
       <textarea ng-model="ctrl.newNote.content" placeholder="Content" required></textarea>
       <button type="submit">Add Note</button>
@@ -21,11 +18,11 @@
       <div class="note" ng-repeat="note in ctrl.notes track by note._id">
         <h2>{{note.title}}</h2>
         <p>{{note.content}}</p>
-        <button ng-if="auth.isLoggedIn()" ng-click="ctrl.editNote(note)">Edit</button>
-        <button ng-if="auth.isLoggedIn()" ng-click="ctrl.deleteNote(note)">Delete</button>
+        <button ng-click="ctrl.editNote(note)">Edit</button>
+        <button ng-click="ctrl.deleteNote(note)">Delete</button>
       </div>
     </div>
-    <div class="edit-section" ng-if="ctrl.editing && auth.isLoggedIn()">
+    <div class="edit-section" ng-if="ctrl.editing">
       <h2>Edit Note</h2>
       <form ng-submit="ctrl.updateNote()">
         <input type="text" ng-model="ctrl.editNoteData.title" required>
