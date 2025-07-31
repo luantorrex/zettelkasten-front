@@ -30,9 +30,9 @@
         }
         return res.json();
       })
-      .then(function() {
-        window.location.href = '/';
-      })
+        .then(function() {
+          window.location.href = auth.basePath();
+        })
       .catch(function(err) {
         document.getElementById('error').textContent = err.message;
       });
