@@ -3,7 +3,7 @@
 
   app.controller('NotesController', function($http) {
     var self = this;
-    var API_BASE = 'http://localhost:3000/notes';
+    var API_BASE = 'http://localhost:3000/notes/';
 
     self.notes = [];
     self.newNote = {};
@@ -27,7 +27,7 @@
     };
 
     self.deleteNote = function(note) {
-      $http.delete(API_BASE + '/' + note._id).then(function() {
+      $http.delete(API_BASE + note._id).then(function() {
         var index = self.notes.indexOf(note);
         if (index >= 0) {
           self.notes.splice(index, 1);
@@ -41,7 +41,7 @@
     };
 
     self.updateNote = function() {
-      var url = API_BASE + '/' + self.editing._id;
+      var url = API_BASE + self.editing._id;
       var noteData = angular.extend({}, self.editNoteData, {
         user_id: auth.getUserId()
       });

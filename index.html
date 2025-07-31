@@ -32,6 +32,9 @@
       })
       .then(function(data) {
         var userId = data.user_id || data.userId || data.id;
+        if (!userId && data.user) {
+          userId = data.user.user_id || data.user.userId || data.user.id || data.user._id;
+        }
         auth.login(data.token || 'logged', userId);
         window.location.href = '/notes/';
       })
