@@ -10,7 +10,7 @@ The project is at its initial stage. More information will be added as developme
 
 1. Clone this repository.
 2. Install dependencies after setting up your Angular environment.
-3. Run the development server (serves the front-end at `http://localhost:8000`). Visit `http://localhost:8000/` for the login page and `http://localhost:8000/notes/` for notes.
+3. Run the development server (serves the front-end at `http://localhost:8000`) which lists notes pulled from `http://localhost:3000/notes`.
 4. Ensure the backend API is running (by default at `http://localhost:3000`).
 
 ```
@@ -20,7 +20,6 @@ npm start
 ```
 
 The backend is expected to run separately. Check the backend repository for details.
-The login page posts credentials to `POST /users/verify` and redirects to the notes section on success.
 The front-end expects the following note endpoints to be available:
 
 ```
