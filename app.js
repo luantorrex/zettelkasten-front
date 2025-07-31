@@ -4,7 +4,6 @@
   app.controller('NotesController', function($http) {
     var self = this;
     var API_BASE = 'http://localhost:3000/notes/';
-    var FIXED_USER_ID = '688bbae65143456fad9ed526';
 
     self.notes = [];
     self.newNote = {};
@@ -19,7 +18,7 @@
 
     self.addNote = function() {
       var noteData = angular.copy(self.newNote);
-      noteData.userId = FIXED_USER_ID;
+      noteData.userId = localStorage.getItem('userId');
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
