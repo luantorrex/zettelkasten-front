@@ -17,9 +17,11 @@
     };
 
     self.addNote = function() {
-      var noteData = angular.extend({}, self.newNote, {
-        user_id: auth.getUserId()
-      });
+      var noteData = angular.copy(self.newNote);
+      var userId = auth.getUserId();
+      if (userId) {
+        noteData.user_id = userId;
+      }
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
@@ -42,9 +44,11 @@
 
     self.updateNote = function() {
       var url = API_BASE + self.editing._id;
-      var noteData = angular.extend({}, self.editNoteData, {
-        user_id: auth.getUserId()
-      });
+      var noteData = angular.copy(self.editNoteData);
+      var userId = auth.getUserId();
+      if (userId) {
+        noteData.user_id = userId;
+      }
       $http.put(url, noteData).then(function(res) {
         var index = self.notes.indexOf(self.editing);
         if (index >= 0) {
