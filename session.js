@@ -5,7 +5,7 @@
   window.auth = {
     login(token, userId) {
       localStorage.setItem(TOKEN_KEY, token);
-      if (userId) {
+      if (userId !== undefined && userId !== null) {
         localStorage.setItem(USER_ID_KEY, userId);
       }
     },
@@ -15,14 +15,17 @@
       window.location.href = '/';
     },
     isLoggedIn() {
-      return !!localStorage.getItem(TOKEN_KEY);
+      return (
+        !!localStorage.getItem(TOKEN_KEY) &&
+        !!localStorage.getItem(USER_ID_KEY)
+      );
     },
     getUserId() {
       return localStorage.getItem(USER_ID_KEY);
     },
     requireAuth() {
       if (!this.isLoggedIn()) {
-        window.location.href = '/';
+        this.logout();
       }
     },
     redirectIfAuthenticated() {

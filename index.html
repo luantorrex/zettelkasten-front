@@ -31,7 +31,8 @@
         return res.json();
       })
       .then(function(data) {
-        auth.login(data.token || 'logged', data.user_id);
+        var userId = data.user_id || data.userId || data.id;
+        auth.login(data.token || 'logged', userId);
         window.location.href = '/notes/';
       })
       .catch(function(err) {
