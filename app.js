@@ -21,6 +21,9 @@
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
+        self.loadNotes();
+      }, function(err) {
+        console.error('Failed to add note', err);
       });
     };
 
