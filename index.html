@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <title>Login - Zettelkasten</title>
   <link rel="stylesheet" href="style.css">
+  <script src="session.js"></script>
+  <script>
+    auth.redirectIfAuthenticated();
+  </script>
   <script>
     function login(event) {
       event.preventDefault();
@@ -19,13 +23,16 @@
         body: JSON.stringify({ username, email, password })
       })
       .then(function(res) {
-        if (res.ok) {
-          window.location.href = '/notes/';
-        } else {
+        if (!res.ok) {
           return res.json().then(function(data) {
             throw new Error(data.detail || 'Login failed');
           });
         }
+        return res.json();
+      })
+      .then(function(data) {
+        auth.login(data.token || 'logged');
+        window.location.href = '/notes/';
       })
       .catch(function(err) {
         document.getElementById('error').textContent = err.message;
