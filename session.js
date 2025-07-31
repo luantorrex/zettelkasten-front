@@ -10,7 +10,10 @@
       .filter(function(p) {
         return p;
       });
-    if (parts.length > 0 && ['notes', 'register'].includes(parts[parts.length - 1])) {
+    if (
+      parts.length > 0 &&
+      ['notes', 'register', 'index.html'].includes(parts[parts.length - 1])
+    ) {
       parts.pop();
     }
     return '/' + parts.join('/') + (parts.length > 0 ? '/' : '');
