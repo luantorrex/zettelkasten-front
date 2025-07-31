@@ -2,7 +2,17 @@
   const TOKEN_KEY = 'authToken';
   const USER_ID_KEY = 'userId';
 
+  // Determine the base path of the application so that redirects work when the
+  // app is served from a subdirectory.
+  function getBasePath() {
+    const parts = window.location.pathname.split('/').filter(function(p) {
+      return p;
+    });
+    return parts.length > 0 ? '/' + parts[0] + '/' : '/';
+  }
+
   window.auth = {
+    basePath: getBasePath,
     login(token, userId) {
       localStorage.setItem(TOKEN_KEY, token);
       if (userId !== undefined && userId !== null) {
@@ -12,7 +22,7 @@
     logout() {
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(USER_ID_KEY);
-      window.location.href = '/';
+      window.location.href = getBasePath();
     },
     isLoggedIn() {
       return (
@@ -28,9 +38,12 @@
         this.logout();
       }
     },
+    redirectToNotes() {
+      window.location.href = getBasePath() + 'notes/';
+    },
     redirectIfAuthenticated() {
       if (this.isLoggedIn()) {
-        window.location.href = '/notes/';
+        this.redirectToNotes();
       }
     }
   };
