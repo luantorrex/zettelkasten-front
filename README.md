@@ -20,6 +20,7 @@ npm start
 ```
 
 The backend is expected to run separately. Check the backend repository for details.
+The login page posts credentials to `POST /users/verify` and redirects to the notes section on success.
 The front-end expects the following note endpoints to be available:
 
 ```
