@@ -5,10 +5,15 @@
   // Determine the base path of the application so that redirects work when the
   // app is served from a subdirectory.
   function getBasePath() {
-    const parts = window.location.pathname.split('/').filter(function(p) {
-      return p;
-    });
-    return parts.length > 0 ? '/' + parts[0] + '/' : '/';
+    const parts = window.location.pathname
+      .split('/')
+      .filter(function(p) {
+        return p;
+      });
+    if (parts.length > 0 && ['notes', 'register'].includes(parts[parts.length - 1])) {
+      parts.pop();
+    }
+    return '/' + parts.join('/') + (parts.length > 0 ? '/' : '');
   }
 
   window.auth = {
