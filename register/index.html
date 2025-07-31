@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Login - Zettelkasten</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="session.js"></script>
+  <title>Register - Zettelkasten</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../session.js"></script>
   <script>
     auth.redirectIfAuthenticated();
   </script>
   <script>
-    function login(event) {
+    function register(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      fetch('http://localhost:3000/users/verify', {
+      fetch('http://localhost:3000/users/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,14 +25,13 @@
       .then(function(res) {
         if (!res.ok) {
           return res.json().then(function(data) {
-            throw new Error(data.detail || 'Login failed');
+            throw new Error(data.detail || 'Registration failed');
           });
         }
         return res.json();
       })
-      .then(function(data) {
-        auth.login(data.token || 'logged');
-        window.location.href = '/notes/';
+      .then(function() {
+        window.location.href = '/';
       })
       .catch(function(err) {
         document.getElementById('error').textContent = err.message;
@@ -42,13 +41,12 @@
 </head>
 <body>
   <div class="container">
-    <h1>Login</h1>
-    <form onsubmit="login(event)">
+    <h1>Register</h1>
+    <form onsubmit="register(event)">
       <input type="text" id="username" placeholder="Username" required>
       <input type="email" id="email" placeholder="Email" required>
       <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-      <button type="button" onclick="window.location.href='/register/'">Register</button>
+      <button type="submit">Register</button>
       <p id="error" class="error"></p>
     </form>
   </div>
