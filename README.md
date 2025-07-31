@@ -16,7 +16,7 @@ The project is at its initial stage. More information will be added as developme
 ```
 # Example steps
 npm install
-ng serve
+npm start
 ```
 
 The backend is expected to run separately. Check the backend repository for details.
