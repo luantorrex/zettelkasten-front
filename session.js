@@ -47,7 +47,9 @@
       }
     },
     redirectToNotes() {
-      window.location.href = getBasePath() + 'notes/';
+      // Always send the user to the notes page served from the front-end
+      // development server running on port 8000.
+      window.location.href = 'http://localhost:8000/notes';
     },
     redirectIfAuthenticated() {
       if (this.isLoggedIn()) {
