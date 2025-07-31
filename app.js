@@ -19,7 +19,7 @@
 
     self.addNote = function() {
       var noteData = angular.copy(self.newNote);
-      noteData.user_id = USER_ID;
+      noteData.userId = USER_ID;
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
@@ -46,7 +46,7 @@
     self.updateNote = function() {
       var url = API_BASE + self.editing._id;
       var noteData = angular.copy(self.editNoteData);
-      noteData.user_id = USER_ID;
+      noteData.userId = USER_ID;
       $http.put(url, noteData).then(function(res) {
         var index = self.notes.indexOf(self.editing);
         if (index >= 0) {
