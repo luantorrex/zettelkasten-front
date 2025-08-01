@@ -67,6 +67,11 @@
       self.editNoteData = {};
     };
 
+    self.logout = function() {
+      localStorage.removeItem('userId');
+      window.location.href = '/';
+    };
+
     self.loadNotes();
   });
 })();
