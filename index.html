@@ -11,11 +11,25 @@
       var password = document.getElementById('password').value.trim();
       var error = document.getElementById('error');
       error.textContent = '';
-      if (username === 'admin' && password === 'password') {
+      fetch('http://localhost:3000/users/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+      }).then(function(res) {
+        if (res.ok) {
+          return res.json();
+        }
+        return res.json().then(function(data) {
+          throw new Error(data.detail || 'Invalid username or password.');
+        });
+      }).then(function(user) {
+        localStorage.setItem('userId', user._id);
         window.location.href = '/notes/';
-      } else {
-        error.textContent = 'Invalid username or password.';
-      }
+      }).catch(function(err) {
+        error.textContent = err.message;
+      });
     }
   </script>
 </head>
