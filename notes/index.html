@@ -19,7 +19,10 @@
       <div class="note" ng-repeat="note in ctrl.notes track by note._id">
         <h2>{{note.title}}</h2>
         <p>{{note.content}}</p>
-        <button class="favorite-btn" ng-click="ctrl.favoriteNote(note)">{{note.favorited ? '★' : '☆'}}</button>
+        <button class="favorite-btn"
+                ng-click="note.favorited ? ctrl.unfavoriteNote(note) : ctrl.favoriteNote(note)">
+          {{note.favorited ? '★' : '☆'}}
+        </button>
         <button ng-click="ctrl.editNote(note)">Edit</button>
         <button ng-click="ctrl.deleteNote(note)">Delete</button>
       </div>
