@@ -4,7 +4,11 @@
   app.controller('NotesController', function($http) {
     var self = this;
     var API_BASE = 'http://localhost:3000/notes/';
-    var USER_ID = '688bbae65143456fad9ed526';
+    var USER_ID = localStorage.getItem('userId');
+    if (!USER_ID) {
+      window.location.href = '/';
+      return;
+    }
 
     self.notes = [];
     self.newNote = {};
