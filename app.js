@@ -14,6 +14,7 @@
 
     self.notes = [];
     self.newNote = {};
+    self.adding = false;
     self.editing = null;
     self.editNoteData = {};
     self.username = localStorage.getItem('username') || 'User';
@@ -34,12 +35,23 @@
       });
     };
 
+    self.openAddModal = function() {
+      self.adding = true;
+      self.newNote = {};
+    };
+
+    self.cancelAdd = function() {
+      self.adding = false;
+      self.newNote = {};
+    };
+
     self.addNote = function() {
       var noteData = angular.copy(self.newNote);
       noteData.userId = USER_ID;
       $http.post(API_BASE, noteData).then(function(res) {
         self.notes.push(res.data);
         self.newNote = {};
+        self.adding = false;
         self.loadNotes();
       }, function(err) {
         console.error('Failed to add note', err);
