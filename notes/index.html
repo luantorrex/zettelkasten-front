@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="NotesController as ctrl">
   <div class="container">
-    <h1>Hello {{ctrl.user.name}}</h1>
+    <h1>Hello {{ctrl.user.username}}</h1>
     <button type="button" ng-click="ctrl.logout()">Logout</button>
     <form ng-submit="ctrl.addNote()">
       <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>

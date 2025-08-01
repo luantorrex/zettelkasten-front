@@ -26,6 +26,7 @@
         });
       }).then(function(user) {
         localStorage.setItem('userId', user._id);
+        localStorage.setItem('username', user.username);
         window.location.href = '/notes/';
       }).catch(function(err) {
         error.textContent = err.message;
