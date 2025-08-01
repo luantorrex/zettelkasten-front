@@ -10,7 +10,7 @@ The project is at its initial stage. More information will be added as developme
 
 1. Clone this repository.
 2. Install dependencies after setting up your Angular environment.
-3. Run the development server (serves the front-end at `http://localhost:8000`). Visit `http://localhost:8000/` for the login page and `http://localhost:8000/notes/` for notes.
+3. Run the development server (serves the front-end at `http://localhost:8000`). Visit `http://localhost:8000/` for the login page and `http://localhost:8000/notes/` for notes. Use the default credentials **admin/password** to log in.
 4. Ensure the backend API is running (by default at `http://localhost:3000`).
 
 ```
