@@ -9,6 +9,7 @@
       window.location.href = '/';
       return;
     }
+    var USER_NOTES_URL = API_BASE + 'user/' + USER_ID;
 
     self.notes = [];
     self.newNote = {};
@@ -16,7 +17,7 @@
     self.editNoteData = {};
 
     self.loadNotes = function() {
-      $http.get(API_BASE).then(function(res) {
+      $http.get(USER_NOTES_URL).then(function(res) {
         self.notes = res.data;
       });
     };
