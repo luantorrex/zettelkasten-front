@@ -9,6 +9,7 @@
 <body ng-controller="NotesController as ctrl">
   <div class="container">
     <h1>Zettelkasten Notes</h1>
+    <button type="button" ng-click="ctrl.logout()">Logout</button>
     <form ng-submit="ctrl.addNote()">
       <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>
       <textarea ng-model="ctrl.newNote.content" placeholder="Content" required></textarea>
