@@ -99,12 +99,12 @@ button:hover {
     border: none;
     cursor: pointer;
     font-size: 20px;
-    color: #ffcc00;
+    color: black;
     margin-right: 10px;
 }
 
 .favorite-btn:hover {
-    color: #ff9900;
+    color: black;
 }
 
 .edit-section {
