@@ -20,6 +20,16 @@
     self.loadNotes = function() {
       $http.get(USER_NOTES_URL).then(function(res) {
         self.notes = res.data;
+        return $http.get(FAVORITES_API + USER_ID, {
+          headers: { accept: 'application/json' }
+        });
+      }).then(function(favRes) {
+        var favorites = favRes.data;
+        self.notes.forEach(function(note) {
+          note.favorited = favorites.some(function(fav) {
+            return fav.noteId === note._id;
+          });
+        });
       });
     };
 
