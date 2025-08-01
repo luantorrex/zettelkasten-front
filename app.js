@@ -63,6 +63,14 @@
       });
     };
 
+    self.unfavoriteNote = function(note) {
+      $http.delete(FAVORITES_API + note._id).then(function() {
+        note.favorited = false;
+      }, function(err) {
+        console.error('Failed to remove favorite', err);
+      });
+    };
+
     self.editNote = function(note) {
       self.editing = note;
       self.editNoteData = angular.copy(note);
