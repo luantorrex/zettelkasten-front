@@ -27,7 +27,7 @@
         var favorites = favRes.data;
         self.notes.forEach(function(note) {
           note.favorited = favorites.some(function(fav) {
-            return fav.noteId === note._id;
+            return fav._id === note._id;
           });
         });
       });
