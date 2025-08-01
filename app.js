@@ -16,6 +16,7 @@
     self.newNote = {};
     self.editing = null;
     self.editNoteData = {};
+    self.username = localStorage.getItem('username') || 'User';
 
     self.loadNotes = function() {
       $http.get(USER_NOTES_URL).then(function(res) {
