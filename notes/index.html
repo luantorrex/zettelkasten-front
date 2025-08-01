@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body ng-controller="NotesController as ctrl">
+  <button class="logout-btn" type="button" ng-click="ctrl.logout()">Logout</button>
   <div class="container">
     <h1>Hello {{ctrl.username}}</h1>
     <button type="button" ng-click="ctrl.logout()">Logout</button>
