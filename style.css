@@ -108,7 +108,6 @@ button:hover {
 }
 
 .edit-section {
-    margin-top: 30px;
     background-color: #f0f8ff;
     padding: 20px;
     border-radius: 8px;
@@ -125,4 +124,20 @@ button:hover {
     position: absolute;
     top: 20px;
     right: 20px;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
