@@ -4,6 +4,7 @@
   app.controller('NotesController', function($http) {
     var self = this;
     var API_BASE = 'http://localhost:3000/notes/';
+    var FAVORITES_API = 'http://localhost:3000/favorites/';
     var USER_ID = localStorage.getItem('userId');
     if (!USER_ID) {
       window.location.href = '/';
@@ -40,6 +41,15 @@
         if (index >= 0) {
           self.notes.splice(index, 1);
         }
+      });
+    };
+
+    self.favoriteNote = function(note) {
+      var payload = { userId: USER_ID, noteId: note._id };
+      $http.post(FAVORITES_API, payload).then(function() {
+        note.favorited = true;
+      }, function(err) {
+        console.error('Failed to favorite note', err);
       });
     };
 
