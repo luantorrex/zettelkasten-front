@@ -27,14 +27,16 @@
         <button ng-click="ctrl.deleteNote(note)">Delete</button>
       </div>
     </div>
-    <div class="edit-section" ng-if="ctrl.editing">
-      <h2>Edit Note</h2>
-      <form ng-submit="ctrl.updateNote()">
-        <input type="text" ng-model="ctrl.editNoteData.title" required>
-        <textarea ng-model="ctrl.editNoteData.content" required></textarea>
-        <button type="submit">Save</button>
-        <button type="button" ng-click="ctrl.cancelEdit()">Cancel</button>
-      </form>
+    <div class="modal" ng-if="ctrl.editing">
+      <div class="edit-section">
+        <h2>Edit Note</h2>
+        <form ng-submit="ctrl.updateNote()">
+          <input type="text" ng-model="ctrl.editNoteData.title" required>
+          <textarea ng-model="ctrl.editNoteData.content" required></textarea>
+          <button type="submit">Save</button>
+          <button type="button" ng-click="ctrl.cancelEdit()">Cancel</button>
+        </form>
+      </div>
     </div>
   </div>
   <script src="../app.js"></script>
