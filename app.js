@@ -12,7 +12,7 @@
       return;
     }
     var USER_NOTES_URL = API_BASE + 'user/' + USER_ID;
-    var USER_TAGS_URL = TAGS_API + USER_ID;
+    var USER_TAGS_URL = TAGS_API + 'user/' + USER_ID;
 
     self.notes = [];
     self.newNote = {};
