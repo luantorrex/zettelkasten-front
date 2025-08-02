@@ -83,9 +83,9 @@
       var tagData = angular.copy(self.newTag);
       tagData.userId = USER_ID;
       $http.post(TAGS_API, tagData).then(function(res) {
-        self.tags.push(res.data);
         self.newTag = {};
         self.addingTag = false;
+        self.loadTags();
       }, function(err) {
         console.error('Failed to add tag', err);
       });
