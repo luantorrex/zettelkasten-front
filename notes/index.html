@@ -14,7 +14,7 @@
       <ul>
         <li ng-repeat="tag in ctrl.tags track by tag.tag_id">
           {{tag.title}}
-          <button type="button" ng-click="ctrl.deleteTag(tag)">Delete</button>
+          <button type="button" ng-click="ctrl.deleteTag(tag)" class="delete-btn">🗑️</button>
         </li>
       </ul>
       <button type="button" ng-click="ctrl.openTagModal()">Add Tag</button>

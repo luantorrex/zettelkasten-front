@@ -170,3 +170,11 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
+
+.delete-btn {
+  color: red;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+}
