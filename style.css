@@ -173,7 +173,7 @@ button:hover {
 
 .delete-btn {
   color: red !important;
-  background: transparent !important;
+  background: red !important;
   border: none !important;
   cursor: pointer;
   font-size: 1.2em;
