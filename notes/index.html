@@ -63,6 +63,7 @@
           <form ng-submit="ctrl.addTag()">
             <input type="text" ng-model="ctrl.newTag.title" placeholder="Title" required>
             <textarea ng-model="ctrl.newTag.description" placeholder="Description" required></textarea>
+            <label for="parent-note-select">Parent Note</label>
             <select ng-model="ctrl.newTag.parent_note_id" required>
               <option ng-repeat="note in ctrl.notes" value="{{note._id}}">{{note.title}}</option>
             </select>
