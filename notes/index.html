@@ -12,7 +12,7 @@
     <div class="sidebar">
       <h2>Tags</h2>
       <ul>
-        <li ng-repeat="tag in ctrl.tags track by tag._id">{{tag.title}}</li>
+        <li ng-repeat="tag in ctrl.tags track by tag.tag_id">{{tag.title}}</li>
       </ul>
       <button type="button" ng-click="ctrl.openTagModal()">Add Tag</button>
     </div>
