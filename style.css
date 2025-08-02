@@ -172,9 +172,13 @@ button:hover {
 }
 
 .delete-btn {
-    background-color: red !important;
+    background-color: #dc3545 !important;
     color: red !important;
     border: none !important;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
