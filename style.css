@@ -172,11 +172,13 @@ button:hover {
 }
 
 .delete-btn {
-  color: red !important;
-  background: red !important;
-  border: none !important;
-  cursor: pointer;
-  font-size: 1.2em;
-  padding: 0;
-  line-height: 1;
+    background-color: red !important;
+    color: red !important;
+    border: none !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
