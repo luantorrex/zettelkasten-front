@@ -91,6 +91,17 @@
       });
     };
 
+    self.deleteTag = function(tag) {
+      $http.delete(TAGS_API + tag.tag_id).then(function() {
+        var index = self.tags.indexOf(tag);
+        if (index >= 0) {
+          self.tags.splice(index, 1);
+        }
+      }, function(err) {
+        console.error('Failed to delete tag', err);
+      });
+    };
+
     self.deleteNote = function(note) {
       $http.delete(API_BASE + note._id).then(function() {
         var index = self.notes.indexOf(note);
