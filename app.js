@@ -5,6 +5,7 @@
     var self = this;
     var API_BASE = 'http://localhost:3000/notes/';
     var FAVORITES_API = 'http://localhost:3000/favorites/';
+    var TAGS_API = 'http://localhost:3000/tags/';
     var USER_ID = localStorage.getItem('userId');
     if (!USER_ID) {
       window.location.href = '/';
@@ -17,6 +18,9 @@
     self.adding = false;
     self.editing = null;
     self.editNoteData = {};
+    self.tags = [];
+    self.newTag = {};
+    self.addingTag = false;
     self.username = localStorage.getItem('username') || 'User';
 
     self.loadNotes = function() {
@@ -32,6 +36,12 @@
             return fav._id === note._id;
           });
         });
+      });
+    };
+
+    self.loadTags = function() {
+      $http.get(TAGS_API + 'user/' + USER_ID).then(function(res) {
+        self.tags = res.data;
       });
     };
 
@@ -55,6 +65,28 @@
         self.loadNotes();
       }, function(err) {
         console.error('Failed to add note', err);
+      });
+    };
+
+    self.openTagModal = function() {
+      self.addingTag = true;
+      self.newTag = {};
+    };
+
+    self.cancelTag = function() {
+      self.addingTag = false;
+      self.newTag = {};
+    };
+
+    self.addTag = function() {
+      var tagData = angular.copy(self.newTag);
+      tagData.userId = USER_ID;
+      $http.post(TAGS_API, tagData).then(function(res) {
+        self.tags.push(res.data);
+        self.newTag = {};
+        self.addingTag = false;
+      }, function(err) {
+        console.error('Failed to add tag', err);
       });
     };
 
@@ -114,5 +146,6 @@
     };
 
     self.loadNotes();
+    self.loadTags();
   });
 })();
