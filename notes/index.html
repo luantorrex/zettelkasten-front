@@ -21,7 +21,6 @@
     </div>
     <div class="container">
       <h1>Hello {{ctrl.username}}</h1>
-      <button type="button" ng-click="ctrl.logout()">Logout</button>
       <button type="button" ng-click="ctrl.openAddModal()">Add a new note</button>
       <div class="notes">
         <div class="note" ng-repeat="note in ctrl.notes track by note._id">
