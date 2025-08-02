@@ -8,42 +8,65 @@
 </head>
 <body ng-controller="NotesController as ctrl">
   <button class="logout-btn" type="button" ng-click="ctrl.logout()">Logout</button>
-  <div class="container">
-    <h1>Hello {{ctrl.username}}</h1>
-    <button type="button" ng-click="ctrl.logout()">Logout</button>
-    <button type="button" ng-click="ctrl.openAddModal()">Add a new note</button>
-    <div class="notes">
-      <div class="note" ng-repeat="note in ctrl.notes track by note._id">
-        <h2>{{note.title}}</h2>
-        <p>{{note.content}}</p>
-        <button class="favorite-btn"
-                ng-click="note.favorited ? ctrl.unfavoriteNote(note) : ctrl.favoriteNote(note)">
-          {{note.favorited ? '★' : '☆'}}
-        </button>
-        <button ng-click="ctrl.editNote(note)">Edit</button>
-        <button ng-click="ctrl.deleteNote(note)">Delete</button>
-      </div>
+  <div class="page">
+    <div class="sidebar">
+      <h2>Tags</h2>
+      <ul>
+        <li ng-repeat="tag in ctrl.tags track by tag._id">{{tag.title}}</li>
+      </ul>
+      <button type="button" ng-click="ctrl.openTagModal()">Add Tag</button>
     </div>
-    <div class="modal" ng-if="ctrl.adding">
-      <div class="edit-section">
-        <h2>New Note</h2>
-        <form ng-submit="ctrl.addNote()">
-          <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>
-          <textarea ng-model="ctrl.newNote.content" placeholder="Content" required></textarea>
-          <button type="submit">Save</button>
-          <button type="button" ng-click="ctrl.cancelAdd()">Cancel</button>
-        </form>
+    <div class="container">
+      <h1>Hello {{ctrl.username}}</h1>
+      <button type="button" ng-click="ctrl.logout()">Logout</button>
+      <button type="button" ng-click="ctrl.openAddModal()">Add a new note</button>
+      <div class="notes">
+        <div class="note" ng-repeat="note in ctrl.notes track by note._id">
+          <h2>{{note.title}}</h2>
+          <p>{{note.content}}</p>
+          <button class="favorite-btn"
+                  ng-click="note.favorited ? ctrl.unfavoriteNote(note) : ctrl.favoriteNote(note)">
+            {{note.favorited ? '★' : '☆'}}
+          </button>
+          <button ng-click="ctrl.editNote(note)">Edit</button>
+          <button ng-click="ctrl.deleteNote(note)">Delete</button>
+        </div>
       </div>
-    </div>
-    <div class="modal" ng-if="ctrl.editing">
-      <div class="edit-section">
-        <h2>Edit Note</h2>
-        <form ng-submit="ctrl.updateNote()">
-          <input type="text" ng-model="ctrl.editNoteData.title" required>
-          <textarea ng-model="ctrl.editNoteData.content" required></textarea>
-          <button type="submit">Save</button>
-          <button type="button" ng-click="ctrl.cancelEdit()">Cancel</button>
-        </form>
+      <div class="modal" ng-if="ctrl.adding">
+        <div class="edit-section">
+          <h2>New Note</h2>
+          <form ng-submit="ctrl.addNote()">
+            <input type="text" ng-model="ctrl.newNote.title" placeholder="Title" required>
+            <textarea ng-model="ctrl.newNote.content" placeholder="Content" required></textarea>
+            <button type="submit">Save</button>
+            <button type="button" ng-click="ctrl.cancelAdd()">Cancel</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" ng-if="ctrl.editing">
+        <div class="edit-section">
+          <h2>Edit Note</h2>
+          <form ng-submit="ctrl.updateNote()">
+            <input type="text" ng-model="ctrl.editNoteData.title" required>
+            <textarea ng-model="ctrl.editNoteData.content" required></textarea>
+            <button type="submit">Save</button>
+            <button type="button" ng-click="ctrl.cancelEdit()">Cancel</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" ng-if="ctrl.addingTag">
+        <div class="edit-section">
+          <h2>New Tag</h2>
+          <form ng-submit="ctrl.addTag()">
+            <input type="text" ng-model="ctrl.newTag.title" placeholder="Title" required>
+            <textarea ng-model="ctrl.newTag.description" placeholder="Description" required></textarea>
+            <select ng-model="ctrl.newTag.parent_note_id" required>
+              <option ng-repeat="note in ctrl.notes" value="{{note._id}}">{{note.title}}</option>
+            </select>
+            <button type="submit">Save</button>
+            <button type="button" ng-click="ctrl.cancelTag()">Cancel</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
