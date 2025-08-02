@@ -12,6 +12,7 @@
       return;
     }
     var USER_NOTES_URL = API_BASE + 'user/' + USER_ID;
+    var USER_TAGS_URL = TAGS_API + USER_ID;
 
     self.notes = [];
     self.newNote = {};
@@ -40,7 +41,7 @@
     };
 
     self.loadTags = function() {
-      $http.get(TAGS_API + 'user/' + USER_ID).then(function(res) {
+      $http.get(USER_TAGS_URL).then(function(res) {
         self.tags = res.data;
       });
     };
