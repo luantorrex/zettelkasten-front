@@ -30,5 +30,7 @@ PUT    /notes/{note_id}
 DELETE /notes/{note_id}
 ```
 
+Each note accepts an optional `note_parent_id` field to reference another note.
+
 Update the `API_BASE` variable in `app.js` if your backend runs on a different URL.
 
